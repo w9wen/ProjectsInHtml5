@@ -57,14 +57,24 @@ textarea {
    ========================================================================== */
 
 
+body {
+    font-family: Arial;
+    font-size: 13px;
+    background: #ccc;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
 
 
-
-
-
-
-
-
+#container {
+    width: 960px;
+    margin: 10px auto;
+    overflow: auto;
+    border-radius: 10px;
+}
 
 
 
@@ -74,16 +84,12 @@ textarea {
    Media Queries
    ========================================================================== */
 
-@media only screen and (min-width: 35em) {
-
-}
+@media only screen and (min-width: 35em) {}
 
 @media print,
-       (-o-min-device-pixel-ratio: 5/4),
-       (-webkit-min-device-pixel-ratio: 1.25),
-       (min-resolution: 120dpi) {
-
-}
+(-o-min-device-pixel-ratio: 5/4),
+(-webkit-min-device-pixel-ratio: 1.25),
+(min-resolution: 120dpi) {}
 
 /* ==========================================================================
    Helper classes
@@ -138,6 +144,7 @@ textarea {
    ========================================================================== */
 
 @media print {
+
     *,
     *:before,
     *:after {
@@ -153,11 +160,11 @@ textarea {
     }
 
     a[href]:after {
-        content: " (" attr(href) ")";
+        content: " ("attr(href) ")";
     }
 
     abbr[title]:after {
-        content: " (" attr(title) ")";
+        content: " ("attr(title) ")";
     }
 
     a[href^="#"]:after,
