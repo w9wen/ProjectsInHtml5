@@ -51,11 +51,9 @@ textarea {
     padding: 0.2em 0;
 }
 
-
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-
 
 body {
     font-family: Arial;
@@ -68,28 +66,71 @@ ul {
     margin: 0;
 }
 
-
 #container {
-    width: 960px;
+    width: 85%;
+    background: #fff;
     margin: 10px auto;
     overflow: auto;
     border-radius: 10px;
 }
 
+header#headermain {
+    padding: 10px;
+    background: #f4f4f4;
+}
 
+nav {
+    height: 40px;
+    background: #aaa;
+    overflow: hidden;
+}
 
+nav li {
+    float: left;
+    padding: 10px 10px 0px 10px;
+}
 
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #000;
+}
+
+main {
+    padding: 20px;
+}
+
+section#sectionmain {
+    width: 70%;
+    float: left;
+}
+
+aside {
+    width: 20%;
+    float: right;
+}
+
+footer {
+    padding: 10px;
+    text-align: center;
+}
 
 /* ==========================================================================
    Media Queries
    ========================================================================== */
 
-@media only screen and (min-width: 35em) {}
+@media only screen and (min-width: 35em) {
+}
 
 @media print,
-(-o-min-device-pixel-ratio: 5/4),
-(-webkit-min-device-pixel-ratio: 1.25),
-(min-resolution: 120dpi) {}
+    (-o-min-device-pixel-ratio: 5/4),
+    (-webkit-min-device-pixel-ratio: 1.25),
+    (min-resolution: 120dpi) {
+}
 
 /* ==========================================================================
    Helper classes
@@ -144,7 +185,6 @@ ul {
    ========================================================================== */
 
 @media print {
-
     *,
     *:before,
     *:after {
@@ -160,11 +200,11 @@ ul {
     }
 
     a[href]:after {
-        content: " ("attr(href) ")";
+        content: " (" attr(href) ")";
     }
 
     abbr[title]:after {
-        content: " ("attr(title) ")";
+        content: " (" attr(title) ")";
     }
 
     a[href^="#"]:after,
