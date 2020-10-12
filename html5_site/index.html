@@ -16,7 +16,7 @@
     <body>
         <div id="container">
             <header id="headermain">
-                <h1>My HTML5 Website</h1>
+                <h1>Mood Teller</h1>
             </header>
             <nav>
                 <ul>
@@ -30,34 +30,18 @@
             <main>
                 <section id="sectionmain">
                     <article>
-                        <h2>My Headline</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Nulla semper neque tortor. Duis ultrices
-                            elementum pretium. Vivamus sed eleifend tortor.
-                            Quisque ullamcorper, arcu a ornare luctus, mauris
-                            elit placerat nulla, et efficitur purus risus in ex.
-                            Praesent erat lorem, elementum eu lorem in, tempor
-                            scelerisque ligula. Cras luctus quam luctus sagittis
-                            ultrices. Sed efficitur quis velit at dapibus. Donec
-                            faucibus efficitur imperdiet. Etiam eu orci eu odio
-                            ultrices sagittis. Nam interdum at neque in
-                            ultricies. Morbi rhoncus nisi risus, in consequat
-                            eros congue non. Vestibulum tristique metus eget
-                            malesuada fringilla. Vestibulum eu condimentum erat,
-                            sed blandit sem.
-                        </p>
-                        <p>
-                            Duis sit amet feugiat eros. Aenean viverra magna
-                            nulla, in suscipit purus pretium non. Maecenas
-                            volutpat egestas nibh. Pellentesque ultricies diam
-                            in mauris varius malesuada. Aliquam mauris diam,
-                            dignissim sed sodales vel, vestibulum in lorem.
-                            Donec id eleifend lacus. Phasellus egestas, turpis
-                            non consequat tempus, metus tortor suscipit eros,
-                            sed congue felis turpis vel ante. Mauris eu nunc
-                            nisl.
-                        </p>
+                        <h2>Mood Teller</h2>
+                        <p>Please type in your name and your current mood</p>
+                        <form id="moodForm" action="#">
+                            <label>Name:</label>
+                            <input type="text" id="name" placeholder="Enter your name...">
+                            <br><br>
+                            <label>Mood:</label>
+                            <input type="text" id="mood" placeholder="Enter your mood...">
+                            <br><br>
+                            <button onclick="showMood()">Tell me </button> <button onclick="clearMood()">Clear</button>
+                        </form>
+                        <div id="holder"></div>
                     </article>
                 </section>
                 <aside>
