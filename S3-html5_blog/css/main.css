@@ -92,11 +92,16 @@ ul, ol{
 }
 
 #branding h1{
-    padding: 0;
+    padding: 0 0 0 70px;
     color: #fff;
+    margin: 0 !important;
 }
 
-
+#branding img{
+    position: absolute;
+    width: 60px;
+    height: auto;
+}
 
 /* ==========================================================================
    Media Queries
