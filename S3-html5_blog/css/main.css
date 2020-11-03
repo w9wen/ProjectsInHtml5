@@ -51,56 +51,72 @@ textarea {
     padding: 0.2em 0;
 }
 
-
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
 
-
-
-a{
+a {
     color: #333;
     text-decoration: none;
 }
 
-h2{
+h2 {
     font-size: 25px;
 }
 
-ul, ol{
+ul,
+ol {
     margin: 0;
     padding: 0;
 }
 
-.container{
+.container {
     margin: 0 auto;
     width: 80%;
     overflow: hidden;
 }
 
-#main-header{
+#main-header {
     height: 50px;
     background: #333;
     overflow: hidden;
     margin-bottom: 20px;
 }
 
-
-#branding{
+#branding {
     float: left;
     width: 50%;
 }
 
-#branding h1{
-    padding: 0 0 0 70px;
+#branding h1 {
+    padding: 5px 0 0 70px;
     color: #fff;
     margin: 0 !important;
 }
 
-#branding img{
+#branding img {
     position: absolute;
     width: 60px;
     height: auto;
+}
+
+#main-nav {
+    float: right;
+    width: 50%;
+    height: auto;
+}
+#main-nav li {
+    float: left;
+    padding: 3px 5px 0 5px;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    list-style: square;
+    color: #fff;
+}
+
+#main-nav a {
+    color: #fff;
 }
 
 /* ==========================================================================
@@ -108,14 +124,12 @@ ul, ol{
    ========================================================================== */
 
 @media only screen and (min-width: 35em) {
-
 }
 
 @media print,
-       (-o-min-device-pixel-ratio: 5/4),
-       (-webkit-min-device-pixel-ratio: 1.25),
-       (min-resolution: 120dpi) {
-
+    (-o-min-device-pixel-ratio: 5/4),
+    (-webkit-min-device-pixel-ratio: 1.25),
+    (min-resolution: 120dpi) {
 }
 
 /* ==========================================================================
