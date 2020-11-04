@@ -105,9 +105,15 @@ ol {
     width: 50%;
     height: auto;
 }
+
+#main-nav ul {
+    float: right;
+}
+
 #main-nav li {
     float: left;
     padding: 3px 5px 0 5px;
+    margin: 0 15px;
     font-size: 15px;
     text-transform: uppercase;
     font-weight: bold;
@@ -117,6 +123,18 @@ ol {
 
 #main-nav a {
     color: #fff;
+}
+#content {
+    float: left;
+    width: 63%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 0 20px 20px 20px;
+}
+
+#sidebar {
+    float: right;
+    width: 30%;
 }
 
 /* ==========================================================================
