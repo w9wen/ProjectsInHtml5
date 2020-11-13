@@ -261,6 +261,48 @@ article .readmore:hover {
     border-bottom: dotted #666 1px;
 }
 
+#comments {
+    margin-top: 20px;
+}
+
+.comment-left {
+    float: left;
+    width: 8%;
+}
+
+.comment-left img {
+    width: 100%;
+}
+
+.comment-right {
+    float: right;
+    width: 90%;
+}
+
+.comment-form {
+    margin-top: 20px;
+    padding: 5px 20px 10px 20px;
+    background: #333;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.comment-form input[type="text"],
+.comment-form input[type="email"] {
+    border: #ccc 1px solid;
+    border-radius: 5px;
+    height: 20px;
+    padding: 3px;
+    width: 97%;
+}
+
+.comment-form textarea {
+    border: #ccc 1px solid;
+    border-radius: 5px;
+    padding: 3px;
+    width: 97%;
+}
+
 /* ==========================================================================
    Media Queries
    ========================================================================== */
