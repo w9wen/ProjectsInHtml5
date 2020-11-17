@@ -303,6 +303,29 @@ article .readmore:hover {
     width: 97%;
 }
 
+.add-form input[type="text"] {
+    border: #ccc 1px solid;
+    border-radius: 5px;
+    height: 20px;
+    padding: 3px;
+    width: 97%;
+}
+
+.add-form select {
+    border: #ccc 1px solid;
+    border-radius: 5px;
+    height: 30px;
+    padding: 3px;
+    width: 98%;
+}
+
+.add-form textarea {
+    border: #ccc 1px solid;
+    border-radius: 5px;
+    padding: 3px;
+    width: 97%;
+}
+
 /* ==========================================================================
    Media Queries
    ========================================================================== */
