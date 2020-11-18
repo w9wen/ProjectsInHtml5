@@ -349,11 +349,35 @@ article .readmore:hover {
 
     #content {
         float: none;
-        width: 91%;
+        width: 89%;
     }
     #sidebar {
         float: none;
         width: 100%;
+    }
+
+    #main-footer .footer-right,
+    #main-footer .footer-left {
+        float: none;
+        width: 100%;
+    }
+
+    #main-footer .footer-nav {
+        float: none;
+        width: 100%;
+    }
+
+    #main-footer .copy {
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 580px) {
+    #main-nav li {
+        padding: 3px 3px 0 3px;
+        margin: 0 5px;
+        font-size: 13px;
+        list-style: none;
     }
 }
 
