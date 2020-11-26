@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>HTML5 Canvas</title>
+    <style>
+      canvas {
+        border: 1px solid #000000;
+      }
+    </style>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script> -->
+
+    <script>
+      var c;
+      var ctx;
+      function init() {
+        c = document.getElementById("myCanvas");
+        ctx = c.getContext("2d");
+        draw();
+      }
+
+      function draw() {
+        var posX = 0;
+        var posY = 0;
+
+        setInterval(function () {
+          posX += 1;
+          posY += 1;
+
+          ctx.fillStyle = "red";
+        }, 30);
+      }
+    </script>
+  </head>
+  <body onload="init()">
+    <canvas id="myCanvas" width="600" height="400">
+      <p>Sorry, this browser does not support canvas.s</p>
+    </canvas>
+  </body>
+</html>
