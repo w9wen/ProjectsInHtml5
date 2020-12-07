@@ -95,22 +95,36 @@ $(document).ready(function () {
 
     // Check Score
     // checkscore(score);
+  }
 
-    function paint_cell(x, y) {
-      ctx.fillStyle = color;
-      ctx.fillRect(x * cw, y * cw, cw, cw);
-      ctx.strokeStyle = "white";
-      ctx.strokeRect(x * cw, y * cw, cw, cw);
-    }
+  function paint_cell(x, y) {
+    ctx.fillStyle = color;
+    ctx.fillRect(x * cw, y * cw, cw, cw);
+    ctx.strokeStyle = "white";
+    ctx.strokeRect(x * cw, y * cw, cw, cw);
+  }
 
-    function check_collision(x, y, array) {
-      for (let index = 0; index < array.length; index++) {
-        if (array[index.x == x && array[index].y == y]) {
-          return true;
-        }
-        // const element = array[index];
-        return false;
+  function check_collision(x, y, array) {
+    for (let index = 0; index < array.length; index++) {
+      if (array[index.x == x && array[index].y == y]) {
+        return true;
       }
+      // const element = array[index];
+      return false;
     }
   }
+
+  // Keyboard Controller
+  $(document).keydown(function (params) {
+    var key = params.which;
+    if (key == "37" && d != "right") {
+      d = "left";
+    } else if (key == "38" && d != "down") {
+      d == "up";
+    } else if (key == "39" && d != "left") {
+      d == "right";
+    } else if (key == "40" && d != "up") {
+      d == "down";
+    }
+  });
 });
