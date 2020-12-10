@@ -15,6 +15,7 @@ $(document).ready(function () {
 
   // Initializer
   function init() {
+    d = "right";
     create_snake();
     create_food();
     score = 0;
@@ -68,7 +69,10 @@ $(document).ready(function () {
       ny == h / cw ||
       check_collision(nx, ny, snake_array)
     ) {
-      init();
+      // init();
+      // Insert final score
+      $("#final_score").html(score);
+      $("$overlay").fadeIn(300);
       return;
     }
 
@@ -94,7 +98,10 @@ $(document).ready(function () {
     paint_cell(food.x, food.y);
 
     // Check Score
-    // checkscore(score);
+    checkscore(score);
+
+    // Display Current Score
+    $("#score").html("Your Score: " + score);
   }
 
   function paint_cell(x, y) {
@@ -112,6 +119,19 @@ $(document).ready(function () {
       // const element = array[index];
       return false;
     }
+  }
+
+  function checkscore(score) {
+    if (localStorage.getItem("highscore") === null) {
+      // If there is no high score
+      localStorage.setItem("highscore", score);
+    } else {
+      // If there is a high score
+      if (score > localStorage.getItem("highscore")) {
+        localStorage.setItem("highscore", score);
+      }
+    }
+    $("#high_score").html("High Score: " + localStorage.getItem("highscore"));
   }
 
   // Keyboard Controller
