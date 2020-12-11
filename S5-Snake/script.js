@@ -7,8 +7,8 @@ $(document).ready(function () {
   var d = "right";
   var food;
   var score;
-  var color = "green";
-  var speed = 130;
+  var color = "blue";
+  var speed = 100;
 
   // Snake Array
   var snake_array;
@@ -148,3 +148,10 @@ $(document).ready(function () {
     }
   });
 });
+
+function resetScore() {
+  localStorage.highscore = 0;
+  // Display High Score
+  highscorediv = document.getElementById("high_score");
+  highscorediv.innerHTML = "High Score:";
+}
