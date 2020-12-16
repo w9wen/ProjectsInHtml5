@@ -11,6 +11,10 @@ if (window.openDatabase) {
   );
 }
 
+var captured = null;
+var highestZ = 0;
+var highestId = 0;
+
 function Note() {
   var self = this;
   var note = document.createElement("div");
@@ -143,7 +147,7 @@ Note.prototype = {
     this.cancelPendingSave();
     var note = this;
     db.transaction(function (tx) {
-      tx.executeSql('DELETE FROM MyStickys WHERE id =?', [note.id]);
+      tx.executeSql("DELETE FROM MyStickys WHERE id =?", [note.id]);
     });
     document.body.removeChild(this.note);
   },
@@ -152,7 +156,7 @@ Note.prototype = {
     this.cancelPendingSave();
     var self = this;
     this._saveTimer = setTimeout(() => {
-      self.save()
+      self.save();
     }, 200);
   },
 
@@ -170,19 +174,110 @@ Note.prototype = {
       this.timestamp = new Date().getTime();
       delete this.dirty;
     }
-    var note this;
+    var note = this;
     db.transaction(function (tx) {
-      tx.executeSql("UPDATE MyStickys SET note = ?, timestamp = ?, left =?, top = ?, zindex = ? WHERE id = ?",
-      [note.text, note.timestamp, note.left, note.top, note.zIndex, note.id]);
-    })
+      tx.executeSql(
+        "UPDATE MyStickys SET note = ?, timestamp = ?, left =?, top = ?, zindex = ? WHERE id = ?",
+        [note.text, note.timestamp, note.left, note.top, note.zIndex, note.id]
+      );
+    });
   },
 
-  saveAsNoew = function () {
+  saveAsNew: function () {
     this.timestamp = new Date.getTime();
     var note = this;
     db.transaction(function (tx) {
-      tx.executeSql("INSERT INTO MyStickys (id, note, timestamp, left, top, zindex)");
+      tx.executeSql(
+        "INSERT INTO MyStickys (id, note, timestamp, left, top, zindex) VALUES (?, ?, ?, ?, ?, ?)",
+        [note.id, note.text, note.timestamp, note.left, note.top, note.zIndex]
+      );
     });
-  }
+  },
 
+  onMouseDown: function (e) {
+    capture = this;
+    this.startX = e.clientX - this.note.offsetLeft;
+    this.startY = e.clientY - this.note.offsetRight;
+    this.zIndex = ++highestZ;
+
+    var self = this;
+    if (!("mouseMoveHandler" in this)) {
+      this.mouseMoveHandler = function (e) {
+        return self.onMouseMove(e);
+      };
+      this.mouseUpHandler = function (e) {
+        return self.onMouseUp(e);
+      };
+
+      document.addEventListener("mousemove", this.mouseMoveHandler, true);
+      document.addEventListener("mouseup", this.mouseUpHandler, true);
+    }
+  },
+
+  onMouseMove: function (e) {
+    if (this != captured) {
+      return true;
+    }
+    this.left = e.clientX - this.startX + "px";
+    this.top = e.clientY - this.startY + "px";
+    return false;
+  },
+
+  onMouseUp: function (e) {
+    document.removeEventListener("mousemove", this.mouseOverHandler, true);
+    document.removeEventListener("mouseup", this.mouseUpHandler, true);
+    this.save();
+    return false;
+  },
+
+  onNoteClick: function (e) {
+    this.editField.focus();
+    getSelection().collapseToEnd();
+  },
+
+  onKeyUp() {
+    this.dirty = true;
+    this.saveSoon();
+  },
 };
+
+function loaded() {
+  db.transaction(function (tx) {
+    tx.executeSql(
+      "SELECT COUNT(*) FROM  MyStickys",
+      [],
+      function (result) {
+        loadNotes();
+      },
+      function (tx, error) {
+        tx.executeSql(
+          "CREATE TABLE MyStickys (id REAL UNIQUE, note TEXT, timestamp REAL, left TEXT, top TEXT, zindex REAL)",
+          [],
+          function (result) {
+            loadNotes();
+          }
+        );
+      }
+    );
+  });
+}
+function loadNotes() {
+  db.transaction(function (tx) {
+    tx.executeSql(
+      "SELECT id, note, timestamp, left, top ,zindex FROM MyStickys",
+      [],
+      function (tx, result) {
+        for (let i = 0; i < result.rows.length; i++) {
+          const row = result.rows[i];
+          var note = new Note();
+          note.id = row["id"];
+          note.text = row["note"];
+          note.timestamp = row["timestamp"];
+          note.left = row["left"];
+          note.top = row["top"];
+          note.zIndex = row["zindex"];
+        }
+      }
+    );
+  });
+}
