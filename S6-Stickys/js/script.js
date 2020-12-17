@@ -51,7 +51,7 @@ function Note() {
 
   note.appendChild(close);
 
-  var edit = createElement("div");
+  var edit = document.createElement("div");
   edit.className = "edit";
   edit.setAttribute("contenteditable", false);
   edit.addEventListener(
@@ -131,7 +131,7 @@ Note.prototype = {
     return this.note.style.top;
   },
 
-  get top(x) {
+  set top(x) {
     this.note.style.top = x;
   },
 
@@ -139,7 +139,7 @@ Note.prototype = {
     return this.note.style.zIndex;
   },
 
-  get zIndex(x) {
+  set zIndex(x) {
     this.note.style.zIndex = x;
   },
 
@@ -184,7 +184,7 @@ Note.prototype = {
   },
 
   saveAsNew: function () {
-    this.timestamp = new Date.getTime();
+    this.timestamp = new Date().getTime();
     var note = this;
     db.transaction(function (tx) {
       tx.executeSql(
@@ -197,7 +197,7 @@ Note.prototype = {
   onMouseDown: function (e) {
     capture = this;
     this.startX = e.clientX - this.note.offsetLeft;
-    this.startY = e.clientY - this.note.offsetRight;
+    this.startY = e.clientY - this.note.offsetTop;
     this.zIndex = ++highestZ;
 
     var self = this;
@@ -208,10 +208,10 @@ Note.prototype = {
       this.mouseUpHandler = function (e) {
         return self.onMouseUp(e);
       };
-
-      document.addEventListener("mousemove", this.mouseMoveHandler, true);
-      document.addEventListener("mouseup", this.mouseUpHandler, true);
     }
+    document.addEventListener("mousemove", this.mouseMoveHandler, true);
+    document.addEventListener("mouseup", this.mouseUpHandler, true);
+    return false;
   },
 
   onMouseMove: function (e) {
@@ -224,7 +224,7 @@ Note.prototype = {
   },
 
   onMouseUp: function (e) {
-    document.removeEventListener("mousemove", this.mouseOverHandler, true);
+    document.removeEventListener("mousemove", this.mouseMoveHandler, true);
     document.removeEventListener("mouseup", this.mouseUpHandler, true);
     this.save();
     return false;
@@ -276,8 +276,50 @@ function loadNotes() {
           note.left = row["left"];
           note.top = row["top"];
           note.zIndex = row["zindex"];
+
+          if (row["id"] > highestId) {
+            highestId = row["id"];
+          }
+          if (row["zindex"] > highestZ) {
+            highestZ = row["zindex"];
+          }
         }
+        if (!result.rows.length) {
+          newNote();
+        }
+      },
+      function (tx, error) {
+        alert("Failed to get notes - " + error.message);
       }
     );
   });
+}
+
+function modifiedString(date) {
+  return (
+    "Sticky Last Modified: " +
+    date.getFullYear() +
+    " - " +
+    (date.getMonth() + 1) +
+    " - " +
+    date.getHours() +
+    ":" +
+    date.getMinutes() +
+    ":" +
+    date.getSeconds()
+  );
+}
+
+function newNote() {
+  var note = new Note();
+  note.id = ++highestId;
+  note.timestamp = new Date().getTime();
+  note.left = Math.round(Math.random() * 400) + "px";
+  note.top = Math.round(Math.random() * 500) + "px";
+  note.zIndex === ++highestZ;
+  note.saveAsNew();
+}
+
+if (db != null) {
+  document.addEventListener("load", loaded, false);
 }
