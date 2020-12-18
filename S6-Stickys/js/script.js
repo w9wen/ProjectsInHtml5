@@ -53,11 +53,11 @@ function Note() {
 
   var edit = document.createElement("div");
   edit.className = "edit";
-  edit.setAttribute("contenteditable", false);
+  edit.setAttribute("contenteditable", true);
   edit.addEventListener(
     "keyup",
     function () {
-      return self.OnKeyUp();
+      return self.onKeyUp();
     },
     false
   );
