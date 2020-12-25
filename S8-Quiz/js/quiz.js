@@ -1,1 +1,3 @@
-console.log("quiz.js connected");
+$(document).ready(function () {
+    $('.questionForm').hide();
+})
