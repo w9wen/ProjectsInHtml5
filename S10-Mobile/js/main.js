@@ -56,6 +56,73 @@ $(document).ready(function () {
       todos.push(new_todo);
       localStorage.setItem("todos", JSON.stringify(todos));
     }
+
+    //// Close and go home
+    $.mobile.changePage($("#home"), "pop");
+  });
+
+  //// Edit Todo
+  $("#edit_form").submit(function () {
+    currentTodoName = localStorage.getItem("currentTodoName");
+    currentTodoDate = localStorage.getItem("currentTodoDate");
+    //// Loop through todos
+    for (let index = 0; index < todoList.length; index++) {
+      const element = todoList[index];
+      if (todoList[index].todo_name == currentTodoName) {
+        todoList.splice(index, 1);
+      }
+      localStorage.setItem("todos", JSON.stringify(todoList));
+    }
+
+    //// Create a new todo
+    var todo_name_edit = $("#todo_name_edit").val();
+    var todo_date_edit = $("#todo_name_edit").val();
+
+    var todos = JSON.parse(localStorage.getItem("todos"));
+
+    //// Create array with new values
+    var update_todo = {
+      todo_name: todo_name_edit,
+      todo_date: todo_date_edit,
+    };
+
+    todos.push(update_todo);
+    localStorage.setItem("todos", JSON.stringify(todos));
+  });
+
+  //// Delete Todo
+  $("#edit_form").on("click", "#delete", function () {
+    currentTodoName = localStorage.getItem("currentTodoName");
+    currentTodoDate = localStorage.getItem("currentTodoDate");
+
+    //// Loop through todos
+    for (let index = 0; index < todoList.length; index++) {
+      const element = todoList[index];
+      if (todoList[index].todo_name == currentTodoName) {
+        todoList.splice(index, 1);
+      }
+      localStorage.setItem("todos", JSON.stringify(todoList));
+    }
+
+    //// Close and go home.
+    $.mobile.changePage($("#home"), "pop");
+  });
+
+  $("#todos").on("click", "#todo_link", function () {
+    localStorage.setItem("currentTodoName", $(this).data("todo_name"));
+    localStorage.setItem("currentTodoDate", $(this).data("todo_date"));
+  });
+
+  //// Insert current data ingo edit form
+  $(document).on("pageshow", "#edit", function () {
+    currentTodoName = localStorage.getItem("currentTodoName");
+    currentTodoDate = localStorage.getItem("currentTodoDate");
+    $("#edit_form input[name=todo_name_edit]", this).val(currentTodoName);
+    $("#edit_form input[name=todo_date_edit`]", this).val(currentTodoDate);
+  });
+
+  $(document).on("pageshow", "#home", function () {
+    window.location.reload();
   });
 
   //// Clear Todos

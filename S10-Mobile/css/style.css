@@ -1,0 +1,10 @@
+#todos span {
+  color: #ccc;
+  font-size: 90%;
+  float: right;
+}
+
+#delete,
+#delete.ui-btn,
+#delete.ui- {
+}
